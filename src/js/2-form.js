@@ -20,9 +20,10 @@ fillFormFields();
 const onFormElementChange = event => {
     event.preventDefault();
     const fieldName = event.target.name;
-    const fieldValue = event.target.value;
+    const fieldValue = event.target.value.trim();
     formData[fieldName] = fieldValue;    
     localStorage.setItem("feedback-form-state", JSON.stringify(formData));
+
 }
 const onFormSubmit = event => {
     event.preventDefault();
@@ -32,6 +33,7 @@ const onFormSubmit = event => {
     }
     console.log(formData);
     event.target.reset();
+    formData = {};
     localStorage.removeItem("feedback-form-state");
 }
 formDataCollector.addEventListener('input', onFormElementChange);
